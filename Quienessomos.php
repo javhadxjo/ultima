@@ -12,8 +12,8 @@
 
 
 <div class="a">
-<p> <a href="https://productos-av.herokuapp.com/Login.php">INICIAR SESION</a></p>
-<p> <a href="https://productos-av.herokuapp.com/Registrar.php">REGISTRARSE</a></p>
+<p> <a href="Login.php">INICIAR SESION</a></p>
+<p> <a href="Registrar.php">REGISTRARSE</a></p>
 </div>
 
 
@@ -23,11 +23,11 @@
       <a class="navbar-brand" href="#">PRODUCTOS AV</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="https://productos-av.herokuapp.com/Tienda.php">INICIO</a></li>
-      <li><a href="https://productos-av.herokuapp.com/Quienessomos.php">QUIÉNES SOMOS</a></li>
-      <li><a href="https://productos-av.herokuapp.com/Productos.php">TODOS LOS PRODUCTOS</a></li>
-      <li><a href="https://productos-av.herokuapp.com/Comocomprar.php">COMO COMPRAR</a></li>
-      <li><a href="https://productos-av.herokuapp.com/Contacto.php">CONTACTO</a></li>
+      <li><a href="Tienda.php">INICIO</a></li>
+      <li><a href="Quienessomos.php">QUIÉNES SOMOS</a></li>
+      <li><a href="#">TODOS LOS PRODUCTOS</a></li>
+      <li><a href="Comocomprar.php">COMO COMPRAR</a></li>
+      <li><a href="Contacto.php">CONTACTO</a></li>
     </ul>
   </div>
 </nav>

@@ -12,8 +12,15 @@
 
 
 <div class="a">
-<p> <a href="https://productos-av.herokuapp.com/Login.php">INICIAR SESION</a></p>
-<p> <a href="https://productos-av.herokuapp.com/Registrar.php">REGISTRARSE</a></p>
+	<?php
+		session_start();
+			echo $_SESSION['login_user'];
+		echo "<form method= 'post' action='Tienda.php'><br><input type='submit' name='enviar' value='cerrar_sesion'/></form>";
+		echo "<form method= 'post' action='carrito.php'><br><input type='submit' name='enviarcarrito' value='carrito'/></form>";
+
+	?>
+<!--<p> <a href="Login.php">INICIAR SESION</a></p>
+<p> <a href="Registrar.php">REGISTRARSE</a></p>-->
 </div>
 
 
@@ -23,11 +30,11 @@
       <a class="navbar-brand" href="#">PRODUCTOS AV</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="https://productos-av.herokuapp.com/Tienda.php">INICIO</a></li>
-      <li><a href="https://productos-av.herokuapp.com/Quienessomos.php">QUIÉNES SOMOS</a></li>
-      <li><a href="https://productos-av.herokuapp.com/Productos.php">TODOS LOS PRODUCTOS</a></li>
-      <li><a href="https://productos-av.herokuapp.com/Comocomprar.php">COMO COMPRAR</a></li>
-      <li><a href="https://productos-av.herokuapp.com/Contacto.php">CONTACTO</a></li>
+     <li><a href="#">INICIO</a></li>
+      <li><a href="#">QUIÉNES SOMOS</a></li>
+      <li><a href="#">TODOS LOS PRODUCTOS</a></li>
+      <li><a href="#">COMO COMPRAR</a></li>
+      <li><a href="#">CONTACTO</a></li>
     </ul>
   </div>
 </nav>
@@ -50,9 +57,9 @@
 		<td> ¡Haz de huevo ELITE el protagonista de tus platillos! Lleva a casa la mejor nutrición para que hagas todas tus recetas con Huevo ELITE de 12 piezas, disfruta de todos los beneficios que puedes obtener del huevo todos los días, además conoce la frescura de cada Huevo ELITE impreso en su cascarón, conoce la fecha de producción y de caducidad en nuestra app o en página web</td>
 			<td>
 				<?php 
-					session_start();
+					
 					if(isset($_SESSION['login_user'])){
-						echo "<input type='submit' name='Submit' value='agregar carrito'/>";
+						echo "<form method= 'post' action=''><input type='submit' name='p1' value='agregar carrito'/><br><label input='cantidad'><b>Cant.</b></label><input type=number name ='cantidad' min='1' max='500'/></form>";
 					}
 						?>
 
@@ -71,7 +78,8 @@
 				<?php 
 					
 					if(isset($_SESSION['login_user'])){
-						echo "<input type='submit' name='Submit' value='agregar carrito'/>";
+						echo "<form method= 'post' action=''><input type='submit' name='p2' value='agregar carrito'/><br><label input='cantidad'><b>Cant.</b></label><input type=number name ='cantidad' min='1' max='500'/></form>";
+
 					}
 						?>
 					<H2> $35.00 </H2>
@@ -88,7 +96,8 @@
 				<?php 
 					
 					if(isset($_SESSION['login_user'])){
-						echo "<input type='submit' name='Submit' value='agregar carrito'/>";
+						echo "<form method= 'post' action=''><input type='submit' name='p3' value='agregar carrito'/><br><label input='cantidad'><b>Cant.</b></label><input type=number name ='cantidad' min='1' max='500'/></form>";
+
 					}
 						?>
 					<H2> $45.00 </H2>
@@ -104,7 +113,8 @@
 				<?php 
 					
 					if(isset($_SESSION['login_user'])){
-						echo "<input type='submit' name='Submit' value='agregar carrito'/>";
+						echo "<form method= 'post' action=''><input type='submit' name='p4' value='agregar carrito'/><br><label input='cantidad'><b>Cant.</b></label><input type=number name ='cantidad' min='1' max='500'/></form>";
+
 					}
 						?>
 					<H2> $350.00 </H2>
@@ -121,7 +131,8 @@
 				<?php 
 					
 					if(isset($_SESSION['login_user'])){
-						echo "<input type='submit' name='Submit' value='agregar carrito'/>";
+						echo "<form method= 'post' action=''><input type='submit' name='p5' value='agregar carrito'/><br><label input='cantidad'><b>Cant.</b></label><input type=number name ='cantidad' min='1' max='500'/></form>";
+
 					}
 						?>
 					<H2> $38.00 </H2>
@@ -139,7 +150,8 @@
 				<?php 
 					
 					if(isset($_SESSION['login_user'])){
-						echo "<input type='submit' name='Submit' value='agregar carrito'/>";
+						echo "<form method= 'post' action=''><input type='submit' name='p6' value='agregar carrito'/><br><label input='cantidad'><b>Cant.</b></label><input type=number name ='cantidad' min='1' max='500'/></form>";
+
 					}
 						?>
 					<H2> $42.00 </H2>
@@ -157,7 +169,8 @@
 				<?php 
 					
 					if(isset($_SESSION['login_user'])){
-						echo "<input type='submit' name='Submit' value='agregar carrito'/>";
+						echo "<form method= 'post' action=''><input type='submit' name='p7' value='agregar carrito'/><br><label input='cantidad'><b>Cant.</b></label><input type=number name ='cantidad' min='1' max='500'/></form>";
+
 					}
 						?>
 					<H2> $37.00 </H2>
@@ -170,3 +183,72 @@
 <br><br><br>
 </body>
 </html>
+
+
+<?php
+	
+	if(isset($_POST['p1'])){
+		require_once ('conexiondb.php');
+		$conectar=conectarBD();
+
+
+		$query="INSERT INTO carrito(total,cantidad, nombre) VALUES(28, " . ((int)$_POST['cantidad']) . ", 'ELITE');";
+    $result = pg_query($conectar, $query) or die ("error en la consulta");
+	}
+
+	if(isset($_POST['p2'])){
+		require_once ('conexiondb.php');
+		$conectar=conectarBD();
+
+
+		$query="INSERT INTO carrito(total,cantidad, nombre) VALUES(35, " . ((int)$_POST['cantidad']) . ", 'BACHOCO');";
+    $result = pg_query($conectar, $query) or die ("error en la consulta");
+	}
+
+	if(isset($_POST['p3'])){
+		require_once ('conexiondb.php');
+		$conectar=conectarBD();
+
+
+		$query="INSERT INTO carrito(total,cantidad, nombre) VALUES(45, " . ((int)$_POST['cantidad']) . ", 'COCOROCO');";
+    $result = pg_query($conectar, $query) or die ("error en la consulta");
+	}
+
+	if(isset($_POST['p4'])){
+		require_once ('conexiondb.php');
+		$conectar=conectarBD();
+
+
+		$query="INSERT INTO carrito(total,cantidad, nombre) VALUES(350, " . ((int)$_POST['cantidad']) . ", 'SANJUAN');";
+    $result = pg_query($conectar, $query) or die ("error en la consulta");
+	}
+
+
+	if(isset($_POST['p5'])){
+		require_once ('conexiondb.php');
+		$conectar=conectarBD();
+
+
+		$query="INSERT INTO carrito(total,cantidad, nombre) VALUES(38, " . ((int)$_POST['cantidad']) . ", '18HERMANOS');";
+    $result = pg_query($conectar, $query) or die ("error en la consulta");
+	}
+
+	if(isset($_POST['p6'])){
+		require_once ('conexiondb.php');
+		$conectar=conectarBD();
+
+
+		$query="INSERT INTO carrito(total,cantidad, nombre) VALUES(42, " . ((int)$_POST['cantidad']) . ", 'CALVARIO');";
+    $result = pg_query($conectar, $query) or die ("error en la consulta");
+	}
+
+	if(isset($_POST['p7'])){
+		require_once ('conexiondb.php');
+		$conectar=conectarBD();
+
+
+		$query="INSERT INTO carrito(total,cantidad, nombre) VALUES(37, " . ((int)$_POST['cantidad']) . ", 'AVIVEL');";
+    $result = pg_query($conectar, $query) or die ("error en la consulta");
+	}
+
+?>

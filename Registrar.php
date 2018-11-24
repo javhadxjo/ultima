@@ -1,13 +1,9 @@
 <?php
     
   if(isset($_POST['insert'])){
-    try{
-      $pdoConnect = new PDO ("mysql:host=localhost;dbname=avicoladb", "root", "");
-    } catch (PDOException $exc){
-      header("Location: Registrar.php");
-    }
+    require_once ('conexiondb.php');
 
-
+$conectar=conectarBD();
 
     $nombre = $_POST['Nombre'];
     $apellidop = $_POST['Apellidop'];
@@ -18,19 +14,20 @@
     $usuario = $_POST['Usuario'];
     $password = $_POST['Password'];
 
-    $pdoQuery = "INSERT INTO `administrador`( `Nombre`, `Apellidop`, `Apellidom`, `Correo`, `Direccion`, `Telefono`, `usuario`, `password`) VALUES (:nombre, :apellidop, :apellidom, :correo, :direccion, :telefono, :usuario, :´password)";
+
+
+    $query="INSERT INTO clientes1(nombre, ap, am, correo, direccion, telefono, usuario, password) VALUES('$nombre', '$apellidop', '$apellidom', '$correo','$direccion', '$telefono', '$usuario', '$password');";
+    $result = pg_query($conectar, $query) or die ("error en la consulta");
     
-    $pdoResult = $pdoConnect->prepare($pdoQuery);
-    $pdoExec = $pdoResult->execute(array(":nombre"=>$nombre, ":apellidop"=>$apellidop, ":apellidom"=>$apellidom, ":correo"=>$correo, ":direccion"=>$direccion, ":telefono"=>$telefono, ":usuario"=>$usuario, ":password"=>$password)); 
+    //var_dump($result);
 
-
-var_dump($pdoExec);
-    if(pdoExec){
+//var_dump($pdoExec);
+    if (!$result) {
        echo "<script type=\"text/javascript\">alert(\"SE REGISTRO CORRECTAMENTE\");</script>";
-      header ("Location: Tienda.php");
+      header("Location: Registrar.php"); 
     }else{
        echo "<script type=\"text/javascript\">alert(\"NO SE REGISTRO\");</script>";
-      header("Location: Registrar.php"); 
+      header ("Location: Tienda.php");
     }
     
   }
@@ -55,7 +52,7 @@ var_dump($pdoExec);
 
 <div class="a">
 
-<p> <a href="https://productos-av.herokuapp.com/Login.php">INICIAR SESION</a></p>
+<p> <a href="Login.php">INICIAR SESION</a></p>
 </div>
 
 
@@ -65,11 +62,11 @@ var_dump($pdoExec);
       <a class="navbar-brand" href="#">PRODUCTOS AV</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="https://productos-av.herokuapp.com/Tienda.php">INICIO</a></li>
-      <li><a href="https://productos-av.herokuapp.com/Quienessomos.php">QUIÉNES SOMOS</a></li>
-      <li><a href="https://productos-av.herokuapp.com/Productos.php">TODOS LOS PRODUCTOS</a></li>
-      <li><a href="https://productos-av.herokuapp.com/Comocomprar.php">COMO COMPRAR</a></li>
-      <li><a href="https://productos-av.herokuapp.com/Contacto.php">CONTACTO</a></li>
+      <li><a href="Tienda.php">INICIO</a></li>
+      <li><a href="Quienessomos.php">QUIÉNES SOMOS</a></li>
+      <li><a href="#">TODOS LOS PRODUCTOS</a></li>
+      <li><a href="Comocomprar.php">COMO COMPRAR</a></li>
+      <li><a href="Contacto.php">CONTACTO</a></li>
     </ul>
   </div>
 </nav>

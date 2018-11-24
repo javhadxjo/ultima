@@ -10,7 +10,7 @@
    
       $myusername = pg_escape_string($_POST['usuario']);
       $mypassword = pg_escape_string($_POST['password']);
-      $sql = "SELECT * FROM clientes WHERE usuario = '$myusername' and password = '$mypassword'";
+      $sql = "SELECT * FROM clientes1 WHERE usuario = '$myusername' and password = '$mypassword'";
       $result = pg_query($conectar, $sql) or die ("error en la consulta");
       $registros=pg_num_rows($result);
 	
